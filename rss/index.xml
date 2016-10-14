@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://tmdgus0118.github.io/blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Fri, 14 Oct 2016 06:07:56 GMT</lastBuildDate><atom:link href="https://tmdgus0118.github.io/blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[grunt & browserify & babel을 이용해 es6을 써보자]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://tmdgus0118.github.io/blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Fri, 14 Oct 2016 06:08:52 GMT</lastBuildDate><atom:link href="https://tmdgus0118.github.io/blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
+<p>문제 <a href="https://www.acmicpc.net/problem/5057" class="bare">https://www.acmicpc.net/problem/5057</a></p>
+</div>
+<div class="paragraph">
+<p>문제 번역</p>
+</div>
+<div class="paragraph">
+<p><strong>문제</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>올해 여름에 자동차 여행으로 유럽을 방문한 영수증에서, 너는 가스가격이 방문하는 도시마다 서로 다양하다는것을 알게되었다.
+아마도 너가 어디서 연료를 채워야 할지를 좀 더 현명하게 정한다면, 돈을 좀 절약할수 있지 않을까?</p>
+</div>
+<div class="paragraph">
+<p>다른 여행자들을 돕기위해(또 다음에 여행할때를 위해) , 너는 연료가 가장 싼 경로를 찾아주는 프로그램을 만드려고 한다.
+모든 차들이 연료가 모두 빈 상태에서 출발하고, 같은 거리에서는 똑같은 연료가 소비된다고 가정한다.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>입력</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>첫째줄에는 도시의 수(n)과 도로의 수(m) (1 &#8656; n &#8656; 1000 , 0 &#8656; m &#8656; 10000)이 입력된다. 다음 n줄은 각각 도시마다 연료의 가격 Pi ( 1&#8656; Pi &#8656; 100)가 입력된다.
+그다음 m줄에는 줄마다 도시1(u), 도시2(v) , 도시1과 도시2사이의 거리(d)가 주어진다. (0 &#8656; u,v &lt; n , 1&#8656; d &#8656; 100)</p>
+</div>
+<div class="paragraph">
+<p>그 다음줄에는 방문하고자 하는 여행자들의 수 (q)가 주어지고 (1&#8656; q &#8656; 100)
+그 다음 q줄에는 각 줄마다 연료의 용량(c) 와 시작 도시 (s) 와 도착 도시(e)가 주어진다
+( 1&#8656; c&#8656; 100, 0 &#8656; s,e &lt; n )</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>출력</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>각 여행자들마다 s에서 e로 갈때 연료 비용을 최소로 하는 경로의 총 연료비용을 출력한다.
+만약 s에서 e로 갈 경로가 없을 경우 "impossible" 라고 출력한다.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>다익스트라 알고리즘으로 해결할수 있다.</p>
+</div>
+<div class="paragraph">
+<p>참조 <a href="https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="bare">https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98</a></p>
+</div>
+<div class="paragraph">
+<p>물론 기본적인 다익스트라 알고리즘으론 안된다.</p>
+</div>
+<div class="paragraph">
+<p>기본적인 다익스트라 알고리즘의 최소 비용배열이 1차원 배열이면</p>
+</div>
+<div class="paragraph">
+<p>이 문제는 2차원 배열을 이용해야 한다.</p>
+</div>
+<div class="paragraph">
+<p>다시말해, 다익스트라 알고리즘의 최소 비용배열을 d라고 하면</p>
+</div>
+<div class="paragraph">
+<p>d[n]은 n 정점으로 가는 최소비용인데,</p>
+</div>
+<div class="paragraph">
+<p>이 문제에서는 d[n][g] 라고 하면 n정점에서 g만큼의 연료가 채워져있을때의 최소비용이</p>
+</div>
+<div class="paragraph">
+<p>라고 가정하고 문제를 풀어야한다.</p>
+</div>
+<div class="paragraph">
+<p>문제답)</p>
+</div>
+<div class="paragraph">
+<p><a href="http://ideone.com/UqSuEH#comments" class="bare">http://ideone.com/UqSuEH#comments</a></p>
+</div>]]></description><link>https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html</link><guid isPermaLink="true">https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html</guid><category><![CDATA[알고리즘]]></category><category><![CDATA[영어]]></category><category><![CDATA[우선순위큐]]></category><category><![CDATA[priority_queue]]></category><category><![CDATA[dijkstra]]></category><category><![CDATA[최단경로]]></category><pubDate>Fri, 14 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[grunt & browserify & babel을 이용해 es6을 써보자]]></title><description><![CDATA[<div class="paragraph">
 <p>es6이 나온지 꽤나 됬다.</p>
 </div>
 <div class="paragraph">
