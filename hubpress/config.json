@@ -4,7 +4,17 @@
     "repositoryName": "blog.code404.co.kr",
     "branch": "gh-pages"
   },
+  "site": {
+    "title": "qoohk",
+    "description": "qoohk developer blog"
+  },
+  "socialnetwork": {
+    "email": "tmdgus0118@gmail.com",
+    "googleplus": "",
+    "facebook": "https://facebook.com/qoohk",
+    "github": "https://github.com/tmdgus0118"
+  },
   "theme": {
-    "name": "Casper"
+    "name": "ghostium"
   }
 }
