@@ -1,5 +1,5 @@
 = Full Tank 문제
-:hp-tags: 알고리즘,영어,우선순위큐,priority_queue,dijkstra,최단경로
+:hp-tags:알고리즘,영어,우선순위큐,priority_queue,dijkstra,최단경로
 :hp-alt-title: full-tank
 
 문제 https://www.acmicpc.net/problem/5057
