@@ -1,6 +1,6 @@
 = grunt & browserify & babel을 이용해 es6을 써보자
 :published_at: 2016-10-12
-:hp-tags: grunt,browserify,babel,node,javascript
+:hp-tags:grunt,browserify,babel,node,javascript
 :hp-image:http://gruntjs.com/img/grunt-logo.png
 :hp-alt-title: grunt-es2015
 
