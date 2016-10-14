@@ -2,7 +2,8 @@
   "meta": {
     "username": "tmdgus0118",
     "repositoryName": "blog.code404.co.kr",
-    "branch": "gh-pages"
+    "branch": "gh-pages",
+    "cname": "blog.code404.co.kr"
   },
   "site": {
     "title": "qoohk",
@@ -15,6 +16,6 @@
     "github": "//github.com/tmdgus0118"
   },
   "theme": {
-    "name": "ghostium"
+    "name": "uno-zen"
   }
 }
