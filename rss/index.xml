@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>https://tmdgus0118.github.io/blog4</link><generator>RSS for Node</generator><lastBuildDate>Fri, 14 Oct 2016 06:25:28 GMT</lastBuildDate><atom:link href="https://tmdgus0118.github.io/blog4/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Fri, 14 Oct 2016 06:33:49 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
 <p>문제 <a href="https://www.acmicpc.net/problem/5057" class="bare">https://www.acmicpc.net/problem/5057</a></p>
 </div>
 <div class="paragraph">
@@ -78,7 +78,7 @@
 </div>
 <div class="paragraph">
 <p><a href="http://ideone.com/UqSuEH#comments" class="bare">http://ideone.com/UqSuEH#comments</a></p>
-</div>]]></description><link>https://tmdgus0118.github.io/blog4/2016/10/14/full-tank.html</link><guid isPermaLink="true">https://tmdgus0118.github.io/blog4/2016/10/14/full-tank.html</guid><pubDate>Fri, 14 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[grunt & browserify & babel을 이용해 es6을 써보자]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/14/full-tank.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/14/full-tank.html</guid><pubDate>Fri, 14 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[grunt & browserify & babel을 이용해 es6을 써보자]]></title><description><![CDATA[<div class="paragraph">
 <p>:hp-image:http://gruntjs.com/img/grunt-logo.png
 :hp-alt-title: grunt-es2015</p>
 </div>
@@ -264,4 +264,4 @@ npm install grunt --save-dev</pre>
 </div>
 <div class="paragraph">
 <p>watch : <a href="https://github.com/gruntjs/grunt-contrib-watch" class="bare">https://github.com/gruntjs/grunt-contrib-watch</a></p>
-</div>]]></description><link>https://tmdgus0118.github.io/blog4/2016/10/12/grunt-browserify-babel-es6.html</link><guid isPermaLink="true">https://tmdgus0118.github.io/blog4/2016/10/12/grunt-browserify-babel-es6.html</guid><pubDate>Wed, 12 Oct 2016 00:00:00 GMT</pubDate></item></channel></rss>
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/12/grunt-browserify-babel-es6.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/12/grunt-browserify-babel-es6.html</guid><pubDate>Wed, 12 Oct 2016 00:00:00 GMT</pubDate></item></channel></rss>
