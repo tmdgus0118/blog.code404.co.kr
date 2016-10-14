@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Full Tank 문제</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://tmdgus0118.github.io/blog.code404.co.kr/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//tmdgus0118.github.io/blog.code404.co.kr/themes/casper/assets/css/screen.css?v=1476425332701" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Full Tank 문제" />
+    <meta property="og:description" content="문제 https://www.acmicpc.net/problem/5057 문제 번역 문제 올해 여름에 자동차 여행으로 유럽을 방문한 영수증에서, 너는 가스가격이 방문하는 도시마다 서로 다양하다는것을 알게되었다. 아마도 너가 어디서 연료를 채워야 할지를 좀 더 현명하게 정한다면, 돈을 좀 절약할수 있지 않을까? 다른 여행자들을 돕기위해(또 다음에 여행할때를 위해) , 너는 연료가 가장 싼" />
+    <meta property="og:url" content="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html" />
+    <meta property="article:tag" content="알고리즘" />
+    <meta property="article:tag" content="영어" />
+    <meta property="article:tag" content="우선순위큐" />
+    <meta property="article:tag" content="priority_queue" />
+    <meta property="article:tag" content="dijkstra" />
+    <meta property="article:tag" content="최단경로" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Full Tank 문제" />
+    <meta name="twitter:description" content="문제 https://www.acmicpc.net/problem/5057 문제 번역 문제 올해 여름에 자동차 여행으로 유럽을 방문한 영수증에서, 너는 가스가격이 방문하는 도시마다 서로 다양하다는것을 알게되었다. 아마도 너가 어디서 연료를 채워야 할지를 좀 더 현명하게 정한다면, 돈을 좀 절약할수 있지 않을까? 다른 여행자들을 돕기위해(또 다음에 여행할때를 위해) , 너는 연료가 가장 싼" />
+    <meta name="twitter:url" content="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="" href="https://tmdgus0118.github.io/blog.code404.co.kr/rss/" />
+</head>
+<body class="post-template tag- tag- tag- tag-priority-queue tag-dijkstra tag- nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag- tag- tag- tag-priority-queue tag-dijkstra tag-">
+
+        <header class="post-header">
+            <h1 class="post-title">Full Tank 문제</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-10-14">14 October 2016</time>  on <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/">알고리즘</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/">영어</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/">우선순위큐</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/priority-queue/">priority_queue</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/dijkstra/">dijkstra</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/">최단경로</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="paragraph">
+<p>문제 <a href="https://www.acmicpc.net/problem/5057" class="bare">https://www.acmicpc.net/problem/5057</a></p>
+</div>
+<div class="paragraph">
+<p>문제 번역</p>
+</div>
+<div class="paragraph">
+<p><strong>문제</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>올해 여름에 자동차 여행으로 유럽을 방문한 영수증에서, 너는 가스가격이 방문하는 도시마다 서로 다양하다는것을 알게되었다.
+아마도 너가 어디서 연료를 채워야 할지를 좀 더 현명하게 정한다면, 돈을 좀 절약할수 있지 않을까?</p>
+</div>
+<div class="paragraph">
+<p>다른 여행자들을 돕기위해(또 다음에 여행할때를 위해) , 너는 연료가 가장 싼 경로를 찾아주는 프로그램을 만드려고 한다.
+모든 차들이 연료가 모두 빈 상태에서 출발하고, 같은 거리에서는 똑같은 연료가 소비된다고 가정한다.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>입력</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>첫째줄에는 도시의 수(n)과 도로의 수(m) (1 &#8656; n &#8656; 1000 , 0 &#8656; m &#8656; 10000)이 입력된다. 다음 n줄은 각각 도시마다 연료의 가격 Pi ( 1&#8656; Pi &#8656; 100)가 입력된다.
+그다음 m줄에는 줄마다 도시1(u), 도시2(v) , 도시1과 도시2사이의 거리(d)가 주어진다. (0 &#8656; u,v &lt; n , 1&#8656; d &#8656; 100)</p>
+</div>
+<div class="paragraph">
+<p>그 다음줄에는 방문하고자 하는 여행자들의 수 (q)가 주어지고 (1&#8656; q &#8656; 100)
+그 다음 q줄에는 각 줄마다 연료의 용량(c) 와 시작 도시 (s) 와 도착 도시(e)가 주어진다
+( 1&#8656; c&#8656; 100, 0 &#8656; s,e &lt; n )</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>출력</strong></p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>각 여행자들마다 s에서 e로 갈때 연료 비용을 최소로 하는 경로의 총 연료비용을 출력한다.
+만약 s에서 e로 갈 경로가 없을 경우 "impossible" 라고 출력한다.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>다익스트라 알고리즘으로 해결할수 있다.</p>
+</div>
+<div class="paragraph">
+<p>참조 <a href="https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="bare">https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98</a></p>
+</div>
+<div class="paragraph">
+<p>물론 기본적인 다익스트라 알고리즘으론 안된다.</p>
+</div>
+<div class="paragraph">
+<p>기본적인 다익스트라 알고리즘의 최소 비용배열이 1차원 배열이면</p>
+</div>
+<div class="paragraph">
+<p>이 문제는 2차원 배열을 이용해야 한다.</p>
+</div>
+<div class="paragraph">
+<p>다시말해, 다익스트라 알고리즘의 최소 비용배열을 d라고 하면</p>
+</div>
+<div class="paragraph">
+<p>d[n]은 n 정점으로 가는 최소비용인데,</p>
+</div>
+<div class="paragraph">
+<p>이 문제에서는 d[n][g] 라고 하면 n정점에서 g만큼의 연료가 채워져있을때의 최소비용이</p>
+</div>
+<div class="paragraph">
+<p>라고 가정하고 문제를 풀어야한다.</p>
+</div>
+<div class="paragraph">
+<p>문제답)</p>
+</div>
+<div class="paragraph">
+<p><a href="http://ideone.com/UqSuEH#comments" class="bare">http://ideone.com/UqSuEH#comments</a></p>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="https://tmdgus0118.github.io/blog.code404.co.kr/author/tmdgus0118/" style="background-image: url(https://avatars.githubusercontent.com/u/10107502?v&#x3D;3)"><span class="hidden">tmdgus0118's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="https://tmdgus0118.github.io/blog.code404.co.kr/author/tmdgus0118/">tmdgus0118</a></h4>
+
+                    <p>Read <a href="https://tmdgus0118.github.io/blog.code404.co.kr/author/tmdgus0118/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Full%20Tank%20%EB%AC%B8%EC%A0%9C&amp;url=https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/14/full-tank.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="https://tmdgus0118.github.io/blog.code404.co.kr"></a> &copy; 2016</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script type="text/javascript" src="//tmdgus0118.github.io/blog.code404.co.kr/themes/casper/assets/js/jquery.fitvids.js?v=1476425332701"></script>
+    <script type="text/javascript" src="//tmdgus0118.github.io/blog.code404.co.kr/themes/casper/assets/js/index.js?v=1476425332701"></script>
+
+</body>
+</html>
