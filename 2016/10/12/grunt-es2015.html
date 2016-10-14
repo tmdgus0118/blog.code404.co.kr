@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//tmdgus0118.github.io/blog.code404.co.kr/themes/ghostium/assets/css/main.min.css?v=1476426031002"/>
-    <link rel="stylesheet" href="//tmdgus0118.github.io/blog.code404.co.kr/themes/ghostium/assets/css/custom.css?v=1476426031002"/>
-    <link rel="stylesheet" href="//tmdgus0118.github.io/blog.code404.co.kr/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476426031002"/>
+    <link rel="stylesheet" href="//tmdgus0118.github.io/blog4/themes/ghostium/assets/css/main.min.css?v=1476426190638"/>
+    <link rel="stylesheet" href="//tmdgus0118.github.io/blog4/themes/ghostium/assets/css/custom.css?v=1476426190638"/>
+    <link rel="stylesheet" href="//tmdgus0118.github.io/blog4/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476426190638"/>
 
 
 
@@ -70,16 +70,16 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//tmdgus0118.github.io/blog.code404.co.kr/themes/ghostium/assets/js/head-scripts.min.js?v=1476426031002"></script>
+    <script src="//tmdgus0118.github.io/blog4/themes/ghostium/assets/js/head-scripts.min.js?v=1476426190638"></script>
 
-    <link rel="canonical" href="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/12/grunt-es2015.html" />
+    <link rel="canonical" href="https://tmdgus0118.github.io/blog4/2016/10/12/grunt-es2015.html" />
     <meta name="referrer" content="origin" />
     
     <meta property="og:site_name" content="qoohk" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="grunt &amp; browserify &amp; babel을 이용해 es6을 써보자" />
     <meta property="og:description" content="es6이 나온지 꽤나 됬다. 하지만 지원하는 거라 해봤자 node.js 나 크롬브라우저 뿐.. 브라우저단에서 es6을 쓸수 있는 방법이 없을까? 해결방법은 grunt &amp;amp; browserify를 쓰는 방법이 있다 ( gulp 나 ) grunt란? grunt는 Javascript Task Runner로써 gulp 와 똑같은 기능을 하는 놈인데 gulp보다 좀 더 직관적이다. ( 사실 비슷비슷하고 케바케.. ) 필자는 gulp를 썼엇는데.. watch를" />
-    <meta property="og:url" content="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/12/grunt-es2015.html" />
+    <meta property="og:url" content="https://tmdgus0118.github.io/blog4/2016/10/12/grunt-es2015.html" />
     <meta property="article:tag" content="grunt" />
     <meta property="article:tag" content="browserify" />
     <meta property="article:tag" content="babel" />
@@ -89,14 +89,14 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="grunt &amp; browserify &amp; babel을 이용해 es6을 써보자" />
     <meta name="twitter:description" content="es6이 나온지 꽤나 됬다. 하지만 지원하는 거라 해봤자 node.js 나 크롬브라우저 뿐.. 브라우저단에서 es6을 쓸수 있는 방법이 없을까? 해결방법은 grunt &amp;amp; browserify를 쓰는 방법이 있다 ( gulp 나 ) grunt란? grunt는 Javascript Task Runner로써 gulp 와 똑같은 기능을 하는 놈인데 gulp보다 좀 더 직관적이다. ( 사실 비슷비슷하고 케바케.. ) 필자는 gulp를 썼엇는데.. watch를" />
-    <meta name="twitter:url" content="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/12/grunt-es2015.html" />
+    <meta name="twitter:url" content="https://tmdgus0118.github.io/blog4/2016/10/12/grunt-es2015.html" />
     
     <script type="application/ld+json">
 null
     </script>
 
     <meta name="generator" content="HubPress" />
-    <link rel="alternate" type="application/rss+xml" title="qoohk" href="https://tmdgus0118.github.io/blog.code404.co.kr/rss/" />
+    <link rel="alternate" type="application/rss+xml" title="qoohk" href="https://tmdgus0118.github.io/blog4/rss/" />
   </head>
   <body class="post-template tag-grunt tag-browserify tag-babel tag-node tag-javascript">
 
@@ -107,17 +107,17 @@ null
         <ul role="navigation" class="drawer-list">
           
           <li class="drawer-list-item">
-            <a href="https://tmdgus0118.github.io/blog.code404.co.kr" data-pjax>
+            <a href="https://tmdgus0118.github.io/blog4" data-pjax>
               <i class="fa fa-home"></i>Home
             </a>
           </li>
           <!-- <li class="drawer-list-item">
-            <a href="https://tmdgus0118.github.io/blog.code404.co.kr" title="qoohk" data-pjax>
+            <a href="https://tmdgus0118.github.io/blog4" title="qoohk" data-pjax>
               <i class="fa fa-list-alt"></i>All posts
             </a>
           </li> -->
           <li class="drawer-list-item">
-            <a href="https://tmdgus0118.github.io/blog.code404.co.kr/rss/">
+            <a href="https://tmdgus0118.github.io/blog4/rss/">
               <i class="fa fa-rss"></i>Subscribe to Feed
             </a>
           </li>
@@ -156,14 +156,14 @@ null
                 <li class="post-meta-item">
                   <span class="tags"><i class="fa fa-tags"></i>
                       <span>
-                      <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/grunt/">grunt</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/browserify/">browserify</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/babel/">babel</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/node/">node</a>, <a href="https://tmdgus0118.github.io/blog.code404.co.kr/tag/javascript/">javascript</a></span>
+                      <a href="https://tmdgus0118.github.io/blog4/tag/grunt/">grunt</a>, <a href="https://tmdgus0118.github.io/blog4/tag/browserify/">browserify</a>, <a href="https://tmdgus0118.github.io/blog4/tag/babel/">babel</a>, <a href="https://tmdgus0118.github.io/blog4/tag/node/">node</a>, <a href="https://tmdgus0118.github.io/blog4/tag/javascript/">javascript</a></span>
                   </span>
                 </li>
               <li class="post-meta-item">
                 <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
               </li>
             </ul>
-            <h1 itemprop="name headline" class="post-title"><a href="https://tmdgus0118.github.io/blog.code404.co.kr/2016/10/12/grunt-es2015.html" itemprop="url" data-pjax title="grunt &amp; browserify &amp; babel을 이용해 es6을 써보자">grunt &amp; browserify &amp; babel을 이용해 es6을 써보자</a></h1>
+            <h1 itemprop="name headline" class="post-title"><a href="/" itemprop="url" data-pjax title="grunt &amp; browserify &amp; babel을 이용해 es6을 써보자">grunt &amp; browserify &amp; babel을 이용해 es6을 써보자</a></h1>
             <!--h2 itemprop="about" class="post-subtitle"></h2-->
           </header>
           <aside class="post-side">
@@ -422,7 +422,7 @@ npm install grunt --save-dev</pre>
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//tmdgus0118.github.io/blog.code404.co.kr/themes/ghostium/assets/js/foot-scripts.min.js?v=1476426031002"></script>
+    <script src="//tmdgus0118.github.io/blog4/themes/ghostium/assets/js/foot-scripts.min.js?v=1476426190638"></script>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
