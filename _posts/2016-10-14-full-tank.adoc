@@ -2,7 +2,7 @@
 :hp-tags:알고리즘,영어,우선순위큐,priority_queue,dijkstra,최단경로
 :hp-alt-title: full-tank
 
-문제 https://www.acmicpc.net/problem/5057
+link:https://www.acmicpc.net/problem/5057[문제로 바로가기]
 
 문제 번역
 
