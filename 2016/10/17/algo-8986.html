@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/main.min.css?v=1476689908462"/>
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/custom.css?v=1476689908462"/>
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476689908462"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/main.min.css?v=1476690428544"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/custom.css?v=1476690428544"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476690428544"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/head-scripts.min.js?v=1476689908462"></script>
+    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/head-scripts.min.js?v=1476690428544"></script>
 
     <link rel="canonical" href="http://blog.code404.co.kr/2016/10/17/algo-8986.html" />
     <meta name="referrer" content="origin" />
@@ -78,11 +78,11 @@
     <meta property="og:site_name" content="qoohk" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="전봇대 문제" />
-    <meta property="og:description" content="문제 바로가기 풀이 식으로 나타내자면 sum ( | X(i) - d * i | ) 값이 최소인 값인데 이것을 그래프로 그리면 아래쪽으로 볼록한 그래프가 나온다 아래쪽으로 볼록한 그래프는 이진탐색, 3진탐색으로 극소값을 찾을수 있다. NlogN으로 풀리는 문제. 처음에는 도저히 모르겠는데 이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯.. 정답소스" />
+    <meta property="og:description" content="문제 바로가기 풀이 식으로 나타내자면 sum ( | X(i) - d * i | ) 값이 최소인 값인데 이것을 그래프로 그리면 아래쪽으로 볼록한 그래프가 나온다 아래쪽으로 볼록한 그래프는 이진탐색, 3진탐색으로 극소값을 찾을수 있다. NlogN으로 풀리는 문제. 처음에는 도저히 모르겠는데 이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯.. #include &amp;lt;iostream&amp;gt; #include &amp;lt;algorithm&amp;" />
     <meta property="og:url" content="http://blog.code404.co.kr/2016/10/17/algo-8986.html" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="전봇대 문제" />
-    <meta name="twitter:description" content="문제 바로가기 풀이 식으로 나타내자면 sum ( | X(i) - d * i | ) 값이 최소인 값인데 이것을 그래프로 그리면 아래쪽으로 볼록한 그래프가 나온다 아래쪽으로 볼록한 그래프는 이진탐색, 3진탐색으로 극소값을 찾을수 있다. NlogN으로 풀리는 문제. 처음에는 도저히 모르겠는데 이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯.. 정답소스" />
+    <meta name="twitter:description" content="문제 바로가기 풀이 식으로 나타내자면 sum ( | X(i) - d * i | ) 값이 최소인 값인데 이것을 그래프로 그리면 아래쪽으로 볼록한 그래프가 나온다 아래쪽으로 볼록한 그래프는 이진탐색, 3진탐색으로 극소값을 찾을수 있다. NlogN으로 풀리는 문제. 처음에는 도저히 모르겠는데 이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯.. #include &amp;lt;iostream&amp;gt; #include &amp;lt;algorithm&amp;" />
     <meta name="twitter:url" content="http://blog.code404.co.kr/2016/10/17/algo-8986.html" />
     
     <script type="application/ld+json">
@@ -202,8 +202,50 @@ null
 <div class="paragraph">
 <p>이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯..</p>
 </div>
-<div class="paragraph">
-<p><a href="http://ideone.com/i8JB4Y">정답소스</a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+typedef long long int ll;
+
+ll p[100000];
+ll N;
+ll sum(ll&amp; l, ll&amp; r){
+	ll m = (l+r)/2;
+	ll lx = 0, rx = 0;
+	for(int i=0;i&lt;N;i++){
+		lx += abs(p[i] - m*i);
+		rx += abs(p[i] - (m+1)*i);
+	}
+	if(lx &lt; rx){
+		r=m-1;
+		return lx;
+	} else {
+		l=m+2;
+		return rx;
+	}
+}
+int main() {
+	// your code goes here
+	ll l,r;
+	ll m = 0x7fffffffffffffff;
+
+	cin &gt;&gt; N;
+	for(int i=0;i&lt;N;i++){
+		cin &gt;&gt; p[i];
+	}
+	l = 0;
+	r = p[N-1];
+	while(l&lt;= r){
+		ll s = sum(l,r);
+		m = min(m,s);
+	}
+	cout &lt;&lt; m &lt;&lt; endl;
+	return 0;
+}</code></pre>
+</div>
 </div>
           </div>
           <footer class="post-footer">
@@ -264,7 +306,7 @@ null
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/foot-scripts.min.js?v=1476689908462"></script>
+    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/foot-scripts.min.js?v=1476690428544"></script>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
