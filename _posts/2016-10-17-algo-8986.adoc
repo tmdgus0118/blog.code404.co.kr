@@ -1,5 +1,5 @@
 = 전봇대 문제
-:hp-tags:알고리즘,영어,수학
+:hp-tags: 알고리즘,영어,수학
 :hp-alt-title: algo-8986
 
 link:https://www.acmicpc.net/problem/8986[문제 바로가기]
