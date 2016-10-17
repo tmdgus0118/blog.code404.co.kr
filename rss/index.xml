@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:38:28 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:47:08 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/8986">문제 바로가기</a></p>
 </div>
 <div class="paragraph">
@@ -22,8 +22,50 @@
 <div class="paragraph">
 <p>이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯..</p>
 </div>
-<div class="paragraph">
-<p><a href="http://ideone.com/i8JB4Y">정답소스</a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+typedef long long int ll;
+
+ll p[100000];
+ll N;
+ll sum(ll&amp; l, ll&amp; r){
+	ll m = (l+r)/2;
+	ll lx = 0, rx = 0;
+	for(int i=0;i&lt;N;i++){
+		lx += abs(p[i] - m*i);
+		rx += abs(p[i] - (m+1)*i);
+	}
+	if(lx &lt; rx){
+		r=m-1;
+		return lx;
+	} else {
+		l=m+2;
+		return rx;
+	}
+}
+int main() {
+	// your code goes here
+	ll l,r;
+	ll m = 0x7fffffffffffffff;
+
+	cin &gt;&gt; N;
+	for(int i=0;i&lt;N;i++){
+		cin &gt;&gt; p[i];
+	}
+	l = 0;
+	r = p[N-1];
+	while(l&lt;= r){
+		ll s = sum(l,r);
+		m = min(m,s);
+	}
+	cout &lt;&lt; m &lt;&lt; endl;
+	return 0;
+}</code></pre>
+</div>
 </div>]]></description><link>http://blog.code404.co.kr/2016/10/17/algo-8986.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/17/algo-8986.html</guid><pubDate>Mon, 17 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/5057">문제로 바로가기</a></p>
 </div>
