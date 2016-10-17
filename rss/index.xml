@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:49:11 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:50:57 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/8986">문제 바로가기</a></p>
 </div>
 <div class="paragraph">
@@ -225,6 +225,94 @@ int main() {
 </div>
 <div class="paragraph">
 <p><a href="http://ideone.com/UqSuEH#comments" class="bare">http://ideone.com/UqSuEH#comments</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include&lt;vector&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#define INFINITY 10000000
+using namespace std;
+typedef struct edge {
+	int s, g, w;
+	edge(int _s,int _g,int _w) : s(_s), g(_g),w(_w) {};
+	bool operator&lt;(const edge&amp; t) const {
+		return w &gt; t.w;
+	}
+}edge;
+int d[1000][101];
+int p[1000];
+int n,m;
+
+vector&lt;edge&gt; r[1000];
+
+int find(int s,int e, int c){
+	for(int i=0;i&lt;n;i++){
+		for(int j=0;j&lt;=c;j++){
+			d[i][j] = INFINITY;
+		}
+	}
+
+	priority_queue&lt;edge&gt; q;
+	q.push(edge(s, 0 , 0));
+	d[s][0] = 0;
+
+	while(!q.empty()){
+		edge v = q.top();
+		q.pop();
+		if(v.s == e){
+			return v.w;
+		}
+
+		if(v.g &lt; c &amp;&amp; v.w + p[v.s] &lt; d[v.s][v.g+1]) {
+			d[v.s][v.g+1] = v.w + p[v.s];
+			q.push(edge(v.s, v.g+1, v.w+p[v.s]));
+		}
+
+		const vector&lt;edge&gt;&amp; list = r[v.s];
+		for(int i=0;i&lt;list.size();i++){
+			const edge&amp; k = list[i];
+			if(k.w &lt;= v.g){
+				int g = v.g - k.w;
+				if(v.w &lt; d[k.s][g]) {
+					d[k.s][g] = v.w;
+					q.push(edge(k.s, g, v.w));
+				}
+			}
+		}
+	}
+
+	return -1;
+}
+
+int main() {
+	int q;
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i=0;i&lt;n;i++){
+		cin &gt;&gt; p[i];
+	}
+	for(int i=0;i&lt;m;i++){
+		int s,e,d;
+		cin &gt;&gt; s &gt;&gt; e &gt;&gt;d;
+		r[s].push_back(edge(e, 0, d));
+		r[e].push_back(edge(s, 0 , d));
+	}
+	cin &gt;&gt; q;
+	while(q--){
+		int s,e,c,d;
+		cin &gt;&gt; c &gt;&gt; s &gt;&gt; e;
+		d = find(s,e,c);
+		if(d &lt; 0){
+			cout &lt;&lt; "impossible" &lt;&lt; endl;
+		}
+		else {
+			cout &lt;&lt; d &lt;&lt; endl;
+		}
+	}
+	return 0;
+}</code></pre>
+</div>
 </div>]]></description><link>http://blog.code404.co.kr/2016/10/14/full-tank.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/14/full-tank.html</guid><pubDate>Fri, 14 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[grunt & browserify & babel을 이용해 es6을 써보자]]></title><description><![CDATA[<div class="paragraph">
 <p>:hp-image:http://gruntjs.com/img/grunt-logo.png
 :hp-alt-title: grunt-es2015</p>
