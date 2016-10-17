@@ -58,3 +58,94 @@ d[n]은 n 정점으로 가는 최소비용인데,
 문제답)
 
 http://ideone.com/UqSuEH#comments
+
+
+
+[source,cpp]
+----
+#include <iostream>
+#include<vector>
+#include <cstdio>
+#include <queue>
+#define INFINITY 10000000
+using namespace std;
+typedef struct edge {
+	int s, g, w;
+	edge(int _s,int _g,int _w) : s(_s), g(_g),w(_w) {};
+	bool operator<(const edge& t) const {
+		return w > t.w;
+	}
+}edge;
+int d[1000][101];
+int p[1000];
+int n,m;
+ 
+vector<edge> r[1000];
+ 
+int find(int s,int e, int c){
+	for(int i=0;i<n;i++){
+		for(int j=0;j<=c;j++){
+			d[i][j] = INFINITY;
+		}
+	}
+ 
+	priority_queue<edge> q;
+	q.push(edge(s, 0 , 0));
+	d[s][0] = 0;
+ 
+	while(!q.empty()){
+		edge v = q.top();
+		q.pop();
+		if(v.s == e){
+			return v.w;
+		}
+ 
+		if(v.g < c && v.w + p[v.s] < d[v.s][v.g+1]) {
+			d[v.s][v.g+1] = v.w + p[v.s];
+			q.push(edge(v.s, v.g+1, v.w+p[v.s]));
+		}
+ 
+		const vector<edge>& list = r[v.s];
+		for(int i=0;i<list.size();i++){
+			const edge& k = list[i];
+			if(k.w <= v.g){
+				int g = v.g - k.w;
+				if(v.w < d[k.s][g]) {
+					d[k.s][g] = v.w;
+					q.push(edge(k.s, g, v.w));
+				}
+			}
+		}
+	}
+ 
+	return -1;
+}
+ 
+int main() {
+	int q;
+	cin >> n >> m;
+	for(int i=0;i<n;i++){
+		cin >> p[i];
+	}
+	for(int i=0;i<m;i++){
+		int s,e,d;
+		cin >> s >> e >>d;
+		r[s].push_back(edge(e, 0, d));
+		r[e].push_back(edge(s, 0 , d));
+	}
+	cin >> q;
+	while(q--){
+		int s,e,c,d;
+		cin >> c >> s >> e;
+		d = find(s,e,c);
+		if(d < 0){
+			cout << "impossible" << endl;
+		}
+		else {
+			cout << d << endl;
+		}
+	}
+	return 0;
+}
+
+----
