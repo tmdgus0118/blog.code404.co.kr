@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:47:08 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:49:11 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/8986">문제 바로가기</a></p>
 </div>
 <div class="paragraph">
@@ -66,7 +66,86 @@ int main() {
 	return 0;
 }</code></pre>
 </div>
-</div>]]></description><link>http://blog.code404.co.kr/2016/10/17/algo-8986.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/17/algo-8986.html</guid><pubDate>Mon, 17 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/17/algo-8986.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/17/algo-8986.html</guid><pubDate>Mon, 17 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[산책 문제]]></title><description><![CDATA[<div class="paragraph">
+<p><a href="https://www.acmicpc.net/problem/5573">문제바로가기</a></p>
+</div>
+<div class="paragraph">
+<p><strong>풀이</strong></p>
+</div>
+<div class="paragraph">
+<p>동적계획법으로 푼다.</p>
+</div>
+<div class="paragraph">
+<p>점 (i,j) 를 지나는 횟수를 P(i,j) 이고 초기값이 M(i,j)일떄</p>
+</div>
+<div class="paragraph">
+<p>P(0,0) = N-1이다.</p>
+</div>
+<div class="paragraph">
+<p>또한 P(i,j) = P(i+1,j) + P(i,j+1)이다. ( 아래로 가는경우, 오른쪽으로 가는경우 )</p>
+</div>
+<div class="paragraph">
+<p>단순히 이분법으로 생각하면, P(i,j) 가 K라고 하면 이고 K가 2의 배수라면</p>
+</div>
+<div class="paragraph">
+<p>P(i+1,j), P(i,j+1) 은 K/2 을 가지게 된다.</p>
+</div>
+<div class="paragraph">
+<p>하지만 K가 2의 배수가 아니라면</p>
+</div>
+<div class="paragraph">
+<p>M(i,j)값에 따라 +1되게 된다.</p>
+</div>
+<div class="paragraph">
+<p>이를 활용해서 W * H 배열의 P(i,j)를 각각 구할수 있고</p>
+</div>
+<div class="paragraph">
+<p>(P(i,j) + M(i,j)) % 2 에 따라서 방향을 선정하면 된다</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+int H, W ,N;
+int m[1001][1001];
+int p[1001][1001];
+
+int main() {
+	// your code goes here
+	cin &gt;&gt; H &gt;&gt; W &gt;&gt; N;
+
+	int flip_cnt = 0 ;
+	p[0][0] = N-1;
+	for(int i=0;i&lt;H;i++){
+		for(int j=0;j&lt;W;j++){
+			cin &gt;&gt; m[i][j];
+			if(m[i][j] == 1){
+				//오
+				p[i][j+1] += (p[i][j]+1)/2;
+				p[i+1][j] += (p[i][j])/2;
+			}
+			else {
+				p[i+1][j] += (p[i][j]+1)/2;
+				p[i][j+1] += (p[i][j])/2;
+			}
+			m[H][j] = -1;
+		}
+		m[i][W] = -1;
+	}
+	int cx = 0,cy = 0;
+	while(m[cy][cx] &gt;= 0){
+		int c = (m[cy][cx] + p[cy][cx]) %2;
+		if(c == 1){
+			cx++;
+		} else {
+			cy++;
+		}
+	}
+	cout &lt;&lt; cy+1 &lt;&lt; " " &lt;&lt; cx+1 &lt;&lt; endl;
+	return 0;
+}</code></pre>
+</div>
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/17/algo-5573.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/17/algo-5573.html</guid><pubDate>Mon, 17 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/5057">문제로 바로가기</a></p>
 </div>
 <div class="paragraph">
