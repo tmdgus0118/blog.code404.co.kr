@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/main.min.css?v=1476680141498"/>
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/custom.css?v=1476680141498"/>
-    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476680141498"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/main.min.css?v=1476690657083"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/custom.css?v=1476690657083"/>
+    <link rel="stylesheet" href="//blog.code404.co.kr/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1476690657083"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/head-scripts.min.js?v=1476680141498"></script>
+    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/head-scripts.min.js?v=1476690657083"></script>
 
     <link rel="canonical" href="http://blog.code404.co.kr/2016/10/14/full-tank.html" />
     <meta name="referrer" content="origin" />
@@ -259,6 +259,94 @@ null
 <div class="paragraph">
 <p><a href="http://ideone.com/UqSuEH#comments" class="bare">http://ideone.com/UqSuEH#comments</a></p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+#include&lt;vector&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#define INFINITY 10000000
+using namespace std;
+typedef struct edge {
+	int s, g, w;
+	edge(int _s,int _g,int _w) : s(_s), g(_g),w(_w) {};
+	bool operator&lt;(const edge&amp; t) const {
+		return w &gt; t.w;
+	}
+}edge;
+int d[1000][101];
+int p[1000];
+int n,m;
+
+vector&lt;edge&gt; r[1000];
+
+int find(int s,int e, int c){
+	for(int i=0;i&lt;n;i++){
+		for(int j=0;j&lt;=c;j++){
+			d[i][j] = INFINITY;
+		}
+	}
+
+	priority_queue&lt;edge&gt; q;
+	q.push(edge(s, 0 , 0));
+	d[s][0] = 0;
+
+	while(!q.empty()){
+		edge v = q.top();
+		q.pop();
+		if(v.s == e){
+			return v.w;
+		}
+
+		if(v.g &lt; c &amp;&amp; v.w + p[v.s] &lt; d[v.s][v.g+1]) {
+			d[v.s][v.g+1] = v.w + p[v.s];
+			q.push(edge(v.s, v.g+1, v.w+p[v.s]));
+		}
+
+		const vector&lt;edge&gt;&amp; list = r[v.s];
+		for(int i=0;i&lt;list.size();i++){
+			const edge&amp; k = list[i];
+			if(k.w &lt;= v.g){
+				int g = v.g - k.w;
+				if(v.w &lt; d[k.s][g]) {
+					d[k.s][g] = v.w;
+					q.push(edge(k.s, g, v.w));
+				}
+			}
+		}
+	}
+
+	return -1;
+}
+
+int main() {
+	int q;
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i=0;i&lt;n;i++){
+		cin &gt;&gt; p[i];
+	}
+	for(int i=0;i&lt;m;i++){
+		int s,e,d;
+		cin &gt;&gt; s &gt;&gt; e &gt;&gt;d;
+		r[s].push_back(edge(e, 0, d));
+		r[e].push_back(edge(s, 0 , d));
+	}
+	cin &gt;&gt; q;
+	while(q--){
+		int s,e,c,d;
+		cin &gt;&gt; c &gt;&gt; s &gt;&gt; e;
+		d = find(s,e,c);
+		if(d &lt; 0){
+			cout &lt;&lt; "impossible" &lt;&lt; endl;
+		}
+		else {
+			cout &lt;&lt; d &lt;&lt; endl;
+		}
+	}
+	return 0;
+}</code></pre>
+</div>
+</div>
           </div>
           <footer class="post-footer">
             <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
@@ -318,7 +406,7 @@ null
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/foot-scripts.min.js?v=1476680141498"></script>
+    <script src="//blog.code404.co.kr/themes/ghostium/assets/js/foot-scripts.min.js?v=1476690657083"></script>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
