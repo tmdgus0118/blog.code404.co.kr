@@ -1,6 +1,73 @@
 = 산책 문제
 :hp-tags:알고리즘,동적계획법,DynamicProgramming
-:hp-alt-title:algo-5573
+:hp-alt-title: algo-5573
 
-link:https://www.acmicpc.net/problem/5573[문자바로가기]
+link:https://www.acmicpc.net/problem/5573[문제바로가기]
+
+
+*풀이*
+
+동적계획법으로 푼다.
+
+점 (i,j) 를 지나는 횟수를 P(i,j) 이고 초기값이 M(i,j)일떄
+
+P(0,0) = N-1이다.
+
+또한 P(i,j) = P(i+1,j) + P(i,j+1)이다. ( 아래로 가는경우, 오른쪽으로 가는경우 )
+
+단순히 이분법으로 생각하면, P(i,j) 가 K라고 하면 이고 K가 2의 배수라면
+
+P(i+1,j), P(i,j+1) 은 K/2 을 가지게 된다.
+
+하지만 K가 2의 배수가 아니라면
+
+M(i,j)값에 따라 +1되게 된다.
+
+이를 활용해서 W * H 배열의 P(i,j)를 각각 구할수 있고
+
+(P(i,j) + M(i,j)) % 2 에 따라서 방향을 선정하면 된다
+
+[source,cpp]
+----
+#include <iostream>
+using namespace std;
+int H, W ,N;
+int m[1001][1001];
+int p[1001][1001];
+
+int main() {
+	// your code goes here
+	cin >> H >> W >> N;
+	
+	int flip_cnt = 0 ;
+	p[0][0] = N-1;
+	for(int i=0;i<H;i++){
+		for(int j=0;j<W;j++){
+			cin >> m[i][j];
+			if(m[i][j] == 1){
+				//오
+				p[i][j+1] += (p[i][j]+1)/2;
+				p[i+1][j] += (p[i][j])/2;
+			}
+			else {
+				p[i+1][j] += (p[i][j]+1)/2;
+				p[i][j+1] += (p[i][j])/2;
+			}
+			m[H][j] = -1;
+		}
+		m[i][W] = -1;
+	}
+	int cx = 0,cy = 0;
+	while(m[cy][cx] >= 0){
+		int c = (m[cy][cx] + p[cy][cx]) %2;
+		if(c == 1){
+			cx++;
+		} else {
+			cy++;
+		}
+	}
+	cout << cy+1 << " " << cx+1 << endl;
+	return 0;
+}
+----
 
