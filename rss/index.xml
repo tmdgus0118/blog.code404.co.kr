@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 04:55:41 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Mon, 17 Oct 2016 07:37:12 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
+<p><a href="https://www.acmicpc.net/problem/8986">문제 바로가기</a></p>
+</div>
+<div class="paragraph">
+<p><strong>풀이</strong></p>
+</div>
+<div class="paragraph">
+<p>식으로 나타내자면 sum ( | X(i) - d * i | ) 값이 최소인 값인데</p>
+</div>
+<div class="paragraph">
+<p>이것을 그래프로 그리면 아래쪽으로 볼록한 그래프가 나온다</p>
+</div>
+<div class="paragraph">
+<p>아래쪽으로 볼록한 그래프는 이진탐색, 3진탐색으로 극소값을 찾을수 있다.</p>
+</div>
+<div class="paragraph">
+<p>NlogN으로 풀리는 문제.</p>
+</div>
+<div class="paragraph">
+<p>처음에는 도저히 모르겠는데</p>
+</div>
+<div class="paragraph">
+<p>이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯..</p>
+</div>
+<div class="paragraph">
+<p><a href="http://ideone.com/i8JB4Y">정답소스</a></p>
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/17/algo-8986.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/17/algo-8986.html</guid><category><![CDATA[알고리즘]]></category><category><![CDATA[영어]]></category><category><![CDATA[수학]]></category><pubDate>Mon, 17 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[Full Tank 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/5057">문제로 바로가기</a></p>
 </div>
 <div class="paragraph">
