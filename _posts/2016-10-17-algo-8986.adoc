@@ -20,4 +20,48 @@ NlogN으로 풀리는 문제.
 이런 비슷한 문제를 보면 우선적으로 그래프먼저 그려보는게 나을듯..
 
 
-link:http://ideone.com/i8JB4Y[정답소스]
+[source,cpp]
+----
+#include <iostream>
+#include <algorithm>
+using namespace std;
+ 
+typedef long long int ll;
+ 
+ll p[100000];
+ll N;
+ll sum(ll& l, ll& r){
+	ll m = (l+r)/2;
+	ll lx = 0, rx = 0;
+	for(int i=0;i<N;i++){
+		lx += abs(p[i] - m*i);
+		rx += abs(p[i] - (m+1)*i);
+	}
+	if(lx < rx){
+		r=m-1;
+		return lx;
+	} else {
+		l=m+2;
+		return rx;
+	}
+}
+int main() {
+	// your code goes here
+	ll l,r;
+	ll m = 0x7fffffffffffffff;
+ 
+	cin >> N;
+	for(int i=0;i<N;i++){
+		cin >> p[i];
+	}
+	l = 0;
+	r = p[N-1];
+	while(l<= r){
+		ll s = sum(l,r);
+		m = min(m,s);
+	}
+	cout << m << endl;
+	return 0;
+}
+
+----
