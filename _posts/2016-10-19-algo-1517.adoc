@@ -1,0 +1,88 @@
+= 버블소트 문제
+:hp-tags:algorithm,알고리즘,sort,소트,정렬
+:hp-alt-title: algo-1517
+
+link:https://www.acmicpc.net/problem/1517[문제바로가기]
+
+*풀이*
+
+버블소트가 문제이름인데
+
+이게 버블소트로 풀리면 너무 친절함!
+
+진짜로 버블소트가 아니라 전혀 다른문제이다.
+
+버블소트가 swap하는 경우는 A[i], A[j]  가있을때 A[i] > A[j]이고 i < j인경우.
+
+즉 먼저 나온 원소가 나중에 나온 원소보다 값이 더 큰경우이다. ( 오름차순 기준 )
+
+
+이 문제의 풀이법은 O(NlogN)으로 머지소트를 활용하는 방법, bit를 활용하는 방법이 있는데
+
+머지소트가 좀 더 이해하기 쉽다.
+
+
+머지소트에서 A버켓과 B버켓을 merge하는 과정에서, 
+
+B버켓이 선택되면 A버켓의 남은 갯수만큼 카운트를 올려주면된다.
+
+
+
+
+풀이할때 명심해야 할점은 *int로 풀면안된다.*
+
+long long int써야됨.
+
+
+[source,cpp]
+----
+#include <iostream>
+using namespace std;
+ 
+typedef long long int lld;
+ 
+int A[500000];
+int S[500000];
+lld merge(int s,int mid ,int e){
+	lld cnt = 0;
+	int t = mid+1;
+	int p = s;
+	int r = s;
+	while(p <= mid && t <= e){
+		if(A[t] < A[p]){
+			S[r++] = A[t++];
+			cnt += (lld)(mid - p + 1);
+		} else {
+			S[r++] = A[p++];
+		}
+	}
+	while(p <= mid) S[r++] = A[p++];
+	while(t <= e) S[r++] = A[t++];
+	for(r = s;r<= e;r++){
+		A[r] = S[r];
+	}
+	return cnt;
+}
+lld sort(int s,int e){
+	int mid = (s+e)/2;
+	lld cnt = 0;
+	if(s == e){
+		return 0;
+	}
+	cnt += sort(s, mid);
+	cnt += sort(mid+1,e);
+	return cnt + merge(s, mid, e);
+}
+ 
+ 
+int main() {
+	// your code goes here
+	int N;
+	cin >> N;
+	for(int i=0;i<N;i++){
+		cin >> A[i];
+	}
+	cout << sort(0,N-1);
+	return 0;
+}
+----
