@@ -1,0 +1,63 @@
+= 격자상의 경로
+:hp-tags:algorithm,알고리즘
+:hp-alt-title: algo-10164
+
+link:https://www.acmicpc.net/problem/10164[문제바로가기]
+
+
+*풀이*
+
+문제 참 쉽다.
+
+근데 문제를 잘 읽어야 된다.. K가 0이 될수 있다는걸 모르고 풀었다가 틀림 ㅠ..
+
+우선
+
+1부터 K점까지의 갈수 있는 모든 경로* K점부터 끝점까지 갈수 있는 모든 경로
+
+가 1부터 끝점까지 가는데 K를 거쳐야 되는 모든 경로
+
+이고,
+
+d[i][j] 가 (i,j)까지 갈수 있는 모든 경로의 수라고 가정했을때
+
+d[i][j] = d[i-1][j] + d[i][j-1]; 이다.
+
+그냥 .. N * M 반복문 돌아서 채우면 된다.
+
+[source,cpp]
+----
+#include <iostream>
+using namespace std;
+int m[2][16][16];
+bool v[2][16][16];
+int N,M,K;
+int f(int c, int x, int y , int dx,int dy){
+	for(int i = y;i <= dy; i++){
+		for(int j= x;j <= dx;j++){
+			int s = m[c][i-1][j] + m[c][i][j-1];
+			m[c][i][j] = max(s, m[c][i][j]);
+		}
+	}
+}
+int main() {
+	// your code goes here
+	cin >> N >> M >> K;
+	int dy,dx;
+	m[0][1][1] = 1;
+	if(K > 0){
+		dy = ((K-1) / M)+1;
+		dx = ((K-1) % M)+1;
+		m[1][dy][dx] = 1;
+		f(0, 1,1,dx,dy);
+		
+		f(1, dx,dy, M, N);
+	
+		cout << m[0][dy][dx] * m[1][N][M] << endl;
+	} else {
+		f(0,1,1,M,N);
+		cout << m[0][N][M] << endl;
+	}
+	return 0;
+}
+----
