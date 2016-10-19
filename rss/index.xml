@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Wed, 19 Oct 2016 05:19:46 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[버블소트 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Wed, 19 Oct 2016 05:25:31 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[버블소트 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/1517">문제바로가기</a></p>
 </div>
 <div class="paragraph">
@@ -160,7 +160,76 @@ int main() {
 	return 0;
 }</code></pre>
 </div>
-</div>]]></description><link>http://blog.code404.co.kr/2016/10/19/algo-1074.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/19/algo-1074.html</guid><dc:creator><![CDATA[Seung Hyun, Kim]]></dc:creator><pubDate>Wed, 19 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/19/algo-1074.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/19/algo-1074.html</guid><dc:creator><![CDATA[Seung Hyun, Kim]]></dc:creator><pubDate>Wed, 19 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[격자상의 경로]]></title><description><![CDATA[<div class="paragraph">
+<p><a href="https://www.acmicpc.net/problem/10164">문제바로가기</a></p>
+</div>
+<div class="paragraph">
+<p><strong>풀이</strong></p>
+</div>
+<div class="paragraph">
+<p>문제 참 쉽다.</p>
+</div>
+<div class="paragraph">
+<p>근데 문제를 잘 읽어야 된다.. K가 0이 될수 있다는걸 모르고 풀었다가 틀림 ㅠ..</p>
+</div>
+<div class="paragraph">
+<p>우선</p>
+</div>
+<div class="paragraph">
+<p>1부터 K점까지의 갈수 있는 모든 경로* K점부터 끝점까지 갈수 있는 모든 경로</p>
+</div>
+<div class="paragraph">
+<p>가 1부터 끝점까지 가는데 K를 거쳐야 되는 모든 경로</p>
+</div>
+<div class="paragraph">
+<p>이고,</p>
+</div>
+<div class="paragraph">
+<p>d[i][j] 가 (i,j)까지 갈수 있는 모든 경로의 수라고 가정했을때</p>
+</div>
+<div class="paragraph">
+<p>d[i][j] = d[i-1][j] + d[i][j-1]; 이다.</p>
+</div>
+<div class="paragraph">
+<p>그냥 .. N * M 반복문 돌아서 채우면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+int m[2][16][16];
+bool v[2][16][16];
+int N,M,K;
+int f(int c, int x, int y , int dx,int dy){
+	for(int i = y;i &lt;= dy; i++){
+		for(int j= x;j &lt;= dx;j++){
+			int s = m[c][i-1][j] + m[c][i][j-1];
+			m[c][i][j] = max(s, m[c][i][j]);
+		}
+	}
+}
+int main() {
+	// your code goes here
+	cin &gt;&gt; N &gt;&gt; M &gt;&gt; K;
+	int dy,dx;
+	m[0][1][1] = 1;
+	if(K &gt; 0){
+		dy = ((K-1) / M)+1;
+		dx = ((K-1) % M)+1;
+		m[1][dy][dx] = 1;
+		f(0, 1,1,dx,dy);
+
+		f(1, dx,dy, M, N);
+
+		cout &lt;&lt; m[0][dy][dx] * m[1][N][M] &lt;&lt; endl;
+	} else {
+		f(0,1,1,M,N);
+		cout &lt;&lt; m[0][N][M] &lt;&lt; endl;
+	}
+	return 0;
+}</code></pre>
+</div>
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/19/algo-10164.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/19/algo-10164.html</guid><dc:creator><![CDATA[Seung Hyun, Kim]]></dc:creator><pubDate>Wed, 19 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[전봇대 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/8986">문제 바로가기</a></p>
 </div>
 <div class="paragraph">
