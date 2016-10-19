@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Wed, 19 Oct 2016 05:12:59 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Z 문제]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[qoohk]]></title><description><![CDATA[qoohk developer blog]]></description><link>http://blog.code404.co.kr</link><generator>RSS for Node</generator><lastBuildDate>Wed, 19 Oct 2016 05:19:46 GMT</lastBuildDate><atom:link href="http://blog.code404.co.kr/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[버블소트 문제]]></title><description><![CDATA[<div class="paragraph">
+<p><a href="https://www.acmicpc.net/problem/1517">문제바로가기</a></p>
+</div>
+<div class="paragraph">
+<p><strong>풀이</strong></p>
+</div>
+<div class="paragraph">
+<p>버블소트가 문제이름인데</p>
+</div>
+<div class="paragraph">
+<p>이게 버블소트로 풀리면 너무 친절함!</p>
+</div>
+<div class="paragraph">
+<p>진짜로 버블소트가 아니라 전혀 다른문제이다.</p>
+</div>
+<div class="paragraph">
+<p>버블소트가 swap하는 경우는 A[i], A[j]  가있을때 A[i] &gt; A[j]이고 i &lt; j인경우.</p>
+</div>
+<div class="paragraph">
+<p>즉 먼저 나온 원소가 나중에 나온 원소보다 값이 더 큰경우이다. ( 오름차순 기준 )</p>
+</div>
+<div class="paragraph">
+<p>이 문제의 풀이법은 O(NlogN)으로 머지소트를 활용하는 방법, bit를 활용하는 방법이 있는데</p>
+</div>
+<div class="paragraph">
+<p>머지소트가 좀 더 이해하기 쉽다.</p>
+</div>
+<div class="paragraph">
+<p>머지소트에서 A버켓과 B버켓을 merge하는 과정에서,</p>
+</div>
+<div class="paragraph">
+<p>B버켓이 선택되면 A버켓의 남은 갯수만큼 카운트를 올려주면된다.</p>
+</div>
+<div class="paragraph">
+<p>풀이할때 명심해야 할점은 <strong>int로 풀면안된다.</strong></p>
+</div>
+<div class="paragraph">
+<p>long long int써야됨.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-cpp" data-lang="cpp">#include &lt;iostream&gt;
+using namespace std;
+
+typedef long long int lld;
+
+int A[500000];
+int S[500000];
+lld merge(int s,int mid ,int e){
+	lld cnt = 0;
+	int t = mid+1;
+	int p = s;
+	int r = s;
+	while(p &lt;= mid &amp;&amp; t &lt;= e){
+		if(A[t] &lt; A[p]){
+			S[r++] = A[t++];
+			cnt += (lld)(mid - p + 1);
+		} else {
+			S[r++] = A[p++];
+		}
+	}
+	while(p &lt;= mid) S[r++] = A[p++];
+	while(t &lt;= e) S[r++] = A[t++];
+	for(r = s;r&lt;= e;r++){
+		A[r] = S[r];
+	}
+	return cnt;
+}
+lld sort(int s,int e){
+	int mid = (s+e)/2;
+	lld cnt = 0;
+	if(s == e){
+		return 0;
+	}
+	cnt += sort(s, mid);
+	cnt += sort(mid+1,e);
+	return cnt + merge(s, mid, e);
+}
+
+
+int main() {
+	// your code goes here
+	int N;
+	cin &gt;&gt; N;
+	for(int i=0;i&lt;N;i++){
+		cin &gt;&gt; A[i];
+	}
+	cout &lt;&lt; sort(0,N-1);
+	return 0;
+}</code></pre>
+</div>
+</div>]]></description><link>http://blog.code404.co.kr/2016/10/19/algo-1517.html</link><guid isPermaLink="true">http://blog.code404.co.kr/2016/10/19/algo-1517.html</guid><dc:creator><![CDATA[Seung Hyun, Kim]]></dc:creator><pubDate>Wed, 19 Oct 2016 00:00:00 GMT</pubDate></item><item><title><![CDATA[Z 문제]]></title><description><![CDATA[<div class="paragraph">
 <p><a href="https://www.acmicpc.net/problem/1074">문제바로가기</a></p>
 </div>
 <div class="paragraph">
