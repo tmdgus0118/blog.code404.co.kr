@@ -1,0 +1,66 @@
+= Z 문제
+:hp-tags:algorithm,알고리즘,분할정복
+:hp-alt-title: algo-1074
+
+link:https://www.acmicpc.net/problem/1074[문제바로가기]
+
+*풀이*
+
+분할정복의 대표적인 예이다.
+
+
+우선 2^N * 2^N 사각형을 4등분 하여 
+각각
+1 2
+3 4
+분면이라고 했을때
+(r,c)가 1,2,3,4분면중 어디에 속하는지 찾는다
+
+그리고 그 분면에서 다시 재귀를 돌려서 (r,c)가 그 분면에서 몇번째인지 찾는다.
+
+식으로 표현해보면,
+
+f(N,r,c) 가 2^N * 2^N사각형에서 (r,c)가 몇번째인지를 찾는 것이라고 할때,
+
+f(N,r,c) = (r,c)의 분면 * 2^(N-1) + f(N-1, r - 2^(N-1), c - 2^(N-1)) 이 된다.
+
+
+문제에서 주의점.
+
+보다싶이 테스트케이스 갯수가 안주어져서, N,r,c를 받을때 cin.eof 를 이용해야 하는데
+
+이거 하면 틀리다고 나옴..
+
+따라서 while(cin >> N >> r >> c) 로 했음.
+
+
+[source,cpp]
+----
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int find(int W,int r, int c){
+	int idx = 0;
+	if(W <= 2){
+		return r*2 + c;
+	}
+	int W2 = W/2;
+	if(r >= W2) {
+		idx+=2;
+	}
+	if(c >= W2) {
+		idx++;
+	}
+	
+	return idx*W2*W2 + find(W2, r%W2, c%W2);
+}
+int main() {
+	// your code goes here
+	int N,r,c;
+	while(cin >> N >> r >> c){
+		cout << find(pow(2,N), r,c) << endl;
+	}
+	return 0;
+}
+----
